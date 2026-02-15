@@ -1,0 +1,9 @@
+--> What we have to done in this Login Page <--
+1. Login Page
+2. Accept username & password
+3. session store
+4. redirect welcome Page
+5. Logout
+
+
+These are the features which we are using in our login page
