@@ -1,4 +1,4 @@
-from flask import Flask, request, url_for, session, Response, redirect
+from flask import Flask, request, url_for, session, Response, redirect, render_template
 
 
 """app = Flask(__name__)                     # This is Object
@@ -24,50 +24,83 @@ def submit():
     else:
         return "You are only viewing"            """
 
-app = Flask(__name__)
-app.secret_key = "supersecret"
+# app = Flask(__name__)
+# app.secret_key = "supersecret"
 
-#Homepage for Login page
-@app.route("/", methods = ["GET", "POST"])
-def login():
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
+# #Homepage for Login page
+# @app.route("/", methods = ["GET", "POST"])
+# def login():
+#     if request.method == "POST":
+#         username = request.form.get("username")
+#         password = request.form.get("password")
 
-        if username == "admin" and password == "123":
-            session["user"] = username  #Store in session
+#         if username == "admin" and password == "123":
+#             session["user"] = username  #Store in session
 
-            return redirect(url_for("welcome"))
-        else:
-            return Response("In-valid credentials. Try Again !!!", mimetype="text/plain")
+#             return redirect(url_for("welcome"))
+#         else:
+#             return Response("In-valid credentials. Try Again !!!", mimetype="text/plain")
 
 
-    return '''
-            <h2>Login Page !</h2>
-            <form method="POST">
-                Username : <input type = "text" name = "username"><br>
-                Password : <input type = "password" name = "password"><br>
-                <input type="submit" value="Login">
-            </form>
-'''
+#     return '''
+#             <h2>Login Page !</h2>
+#             <form method="POST">
+#                 Username : <input type = "text" name = "username"><br>
+#                 Password : <input type = "password" name = "password"><br>
+#                 <input type="submit" value="Login">
+#             </form>
+# '''
 
-#Welcome Page
-@app.route("/welcome")
-def welcome():
-    if "user" in session:
-        return f'''
-                <h2> Welcome, {session["user"]}!</h2>
-                <a href={url_for('logout')}>Logout</a>
+# #Welcome Page
+# @app.route("/welcome")
+# def welcome():
+#     if "user" in session:
+#         return f'''
+#                 <h2> Welcome, {session["user"]}!</h2>
+#                 <a href={url_for('logout')}>Logout</a>
 
-        '''
+#         '''
     
-    return redirect(url_for("login"))
+#     return redirect(url_for("login"))
 
 
 
-#Logout page
+# #Logout page
 
-@app.route("/logout")
-def logout():
-    session.pop("user", None)
-    return redirect(url_for("login"))
+# @app.route("/logout")
+# def logout():
+#     session.pop("user", None)
+#     return redirect(url_for("login"))
+
+
+
+
+
+
+"""Starting Phase 2"""
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return render_template("login.html")
+
+@app.route("/submit", methods=["POST"])
+def submit():
+    username = request.form.get("username")
+    password = request.form.get("password")
+
+
+    # if username == "anuj123" and password == "pass":
+    #     return render_template("welcome.html", name=username)
+
+    valid_user = {
+        'anuj123':'123',
+        'sagar123':'pass',
+        'hacker':'pass12'
+    }
+    if username in valid_user and password == valid_user[username]:
+        return render_template("welcome.html", name=username)
+
+
+    else:
+        return "In-valid Username and Password"

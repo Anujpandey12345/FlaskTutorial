@@ -1,0 +1,33 @@
+1. BASIC HTML STRUCTURE
+
+___________________________________________________
+
+
+
+2. FROM IN FLASK
+-->Rule's when we are using flask FORMS
+     a. Use always name attributes in HTML
+     b. Always define the POST method because we send the data in forms
+     c. Make sure type and route name are same (Match)
+
+
+
+
+____________________________________________________
+
+
+
+3. JINJA
+1. python Value
+{{ variable }}
+{{name}}
+<p>Welcome {{name}}</p>
+
+
+2. Conditionals
+is_topper = True
+{% if is_topper %}
+<p>you are the topper</p>
+{% else %}
+<p>You need to work hard</p>
+{% endif %}
