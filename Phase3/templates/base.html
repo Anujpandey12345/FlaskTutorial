@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>
+        {% block title %} My Feedback Site {% endblock %}
+    </title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 20px;
+            background-color: aquamarine;
+        }
+
+        header,
+        footer {
+            background: #333;
+            padding: 10px;
+            color: blue;
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 10px;
+            color: aliceblue;
+            text-decoration: none;
+        }
+
+        main {
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Feedback Page</h1>
+        <nav>
+            <a href="/feedback">FeedbackPage</a>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %} {% endblock %}
+    </main>
+    <footer>
+        <p>
+            @2025 anujpandey coding tech team
+        </p>
+    </footer>
+</body>
+
+</html>
